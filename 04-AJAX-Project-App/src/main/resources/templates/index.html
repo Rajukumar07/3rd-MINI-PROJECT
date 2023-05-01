@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns="www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
+
+
+
+<script>
+	$(document).ready(function() {
+		$("#submitBtn").click(function() {
+
+			$("#cname").on("change", function(e) {
+				$.ajax({
+					type : "GET",
+					url : "cmsg",
+					data : {
+						cname : $("#cname").val()
+					},
+					success : function(data) {
+						$("#dropDownDiv").html(data);
+					}
+				});
+			});
+
+			$.ajax({
+				type : "GET",
+				url : "msg",
+				data : {
+					name : $("#username").val()
+				},
+				success : function(data) {
+					$("#msgDiv").html(data);
+				},
+				error : function(result) {
+					alert('error');
+				}
+			});
+		});
+
+	});
+</script>
+</head>
+<body>
+	<div class="container">
+		<header>
+			<nav class="navbar navbar-light bg-light">
+				<div class="container-fluid">
+					<a class="navbar-brand">Navbar</a>
+
+				</div>
+			</nav>
+		</header>
+		<main>
+			<div class=" h-100 mx-auto">
+				<div class="card ">
+
+					<div class="card-body mt-5">
+						<div class="mb-3 mx-auto" style="top: 100px; width: 200px;">
+							<p id="msgDiv"></p>
+							<hr />
+
+							<p id="dropDownDiv"></p>
+
+						</div>
+					</div>
+					<div class="card-body mt-2">
+						<div class="mb-3 mx-auto" style="top: 100px; width: 200px;">
+							<input type="text" class="form-control" name="name" id="username"
+								placeholder="Enter Your Name" />
+
+						</div>
+					</div>
+					<div class="card-body mt-2">
+						<div class="mb-3 mx-auto " style="width: 200px;">
+							<input type="submit" class="btn btn-primary  g-2" value="Submit"
+								style="top: 100px;" id="submitBtn" />
+						</div>
+					</div>
+					<div class="card-body mt-2">
+						<div class="mb-3 mx-auto " style="width: 200px;">
+							<select id="cname" class="btn btn-secondary">
+								<option>-Select-</option>
+								<option>India</option>
+								<option>USA</option>
+								<option>UK</option>
+								<option>Canada</option>
+							</select>
+						</div>
+					</div>
+
+
+
+
+
+
+				</div>
+			</div>
+		</main>
+		<footer></footer>
+
+	</div>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></script>
+</body>
+</html>
